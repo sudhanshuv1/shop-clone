@@ -10,6 +10,7 @@ A full-featured, client-side e-commerce application built with **Next.js 14**, *
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
+- [How to Run Locally](#how-to-run-locally)
 - [Pages & Routes](#pages--routes)
 - [Components](#components)
 - [State Management](#state-management)
@@ -131,6 +132,85 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser. The page auto-updates as you edit files.
+
+---
+
+## How to Run Locally
+
+A step-by-step guide to get ShopClone running on your machine.
+
+### 1. Prerequisites
+
+Make sure you have the following installed:
+
+- **Git** -- [Download & Install Git](https://git-scm.com/)
+- **Node.js** 18.x or later -- [Download & Install Node.js](https://nodejs.org/)
+  - npm is included with Node.js. You can also use **yarn**, **pnpm**, or **bun** as your package manager.
+
+Verify your installations:
+
+```bash
+git --version
+node --version   # Should output v18.x.x or higher
+npm --version
+```
+
+### 2. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd e-commerce
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+Or with an alternative package manager:
+
+```bash
+yarn install    # using yarn
+pnpm install    # using pnpm
+bun install     # using bun
+```
+
+### 4. Start the Development Server
+
+```bash
+npm run dev
+```
+
+The app will start on [http://localhost:3000](http://localhost:3000). Open this URL in your browser.
+
+> **Tip:** Next.js supports hot reloading -- any changes you make to the source files will automatically reflect in the browser without a manual refresh.
+
+### 5. Build for Production (Optional)
+
+To create an optimized production build and run it locally:
+
+```bash
+npm run build
+npm run start
+```
+
+This starts the production server on [http://localhost:3000](http://localhost:3000).
+
+### 6. Lint the Code (Optional)
+
+```bash
+npm run lint
+```
+
+### Troubleshooting
+
+| Issue | Solution |
+| ----- | -------- |
+| `node: command not found` | Install Node.js from [nodejs.org](https://nodejs.org/) and ensure it's in your PATH |
+| `npm install` fails with permission errors | Try `sudo npm install` (macOS/Linux) or run your terminal as Administrator (Windows) |
+| Port 3000 is already in use | Stop the other process using port 3000, or start the dev server on a different port: `npm run dev -- -p 3001` |
+| Images not loading | The app uses `picsum.photos` for placeholder images -- ensure you have an active internet connection |
 
 ---
 
