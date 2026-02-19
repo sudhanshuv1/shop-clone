@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -44,11 +45,12 @@ export default function RootLayout({
             </div>
           </AppProvider>
         </AuthProvider>
-        <script
-    src="http://localhost:3000/ourguide2-widget.iife.js"
-    data-product-id="prod_e6ea2dc7-192d-49f7-9068-ae8402996557"
-    data-api-url="http://localhost:3000"
-  ></script>
+        <Script
+          src="http://localhost:3000/ourguide2-widget.iife.js"
+          data-product-id="prod_e6ea2dc7-192d-49f7-9068-ae8402996557"
+          data-api-url="http://localhost:3000"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
