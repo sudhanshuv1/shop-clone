@@ -9,7 +9,7 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-import { Product, CartItem, Order } from "@/lib/types";
+import { Product, CartItem, Order, Review } from "@/lib/types";
 import { useAuth } from "@/context/AuthContext";
 
 interface AppContextType {
@@ -25,6 +25,17 @@ interface AppContextType {
   // Orders
   orders: Order[];
   placeOrder: (items: CartItem[], total: number) => string;
+
+  // Wishlist
+  wishlist: Product[];
+  addToWishlist: (product: Product) => void;
+  removeFromWishlist: (productId: number) => void;
+  isInWishlist: (productId: number) => boolean;
+
+  // Reviews
+  reviews: Review[];
+  addReview: (review: Omit<Review, "id" | "date">) => void;
+  getProductReviews: (productId: number) => Review[];
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -45,12 +56,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [items, setItems] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
 
   // (Re-)hydrate whenever the user changes
   useEffect(() => {
     setItems(loadFromStorage<CartItem[]>(`shopclone-cart-${userId}`, []));
     setOrders(loadFromStorage<Order[]>(`shopclone-orders-${userId}`, []));
+    setWishlist(loadFromStorage<Product[]>(`shopclone-wishlist-${userId}`, []));
+    setReviews(loadFromStorage<Review[]>("shopclone-reviews", []));
     setActiveUserId(userId);
   }, [userId]);
 
@@ -67,6 +82,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(`shopclone-orders-${userId}`, JSON.stringify(orders));
     }
   }, [orders, userId, activeUserId]);
+
+  // Persist wishlist
+  useEffect(() => {
+    if (activeUserId !== null && activeUserId === userId) {
+      localStorage.setItem(`shopclone-wishlist-${userId}`, JSON.stringify(wishlist));
+    }
+  }, [wishlist, userId, activeUserId]);
+
+  // Persist reviews (shared across all users)
+  useEffect(() => {
+    if (activeUserId !== null) {
+      localStorage.setItem("shopclone-reviews", JSON.stringify(reviews));
+    }
+  }, [reviews, activeUserId]);
 
   const addToCart = useCallback((product: Product, quantity: number = 1) => {
     setItems((prev) => {
@@ -124,6 +153,38 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return order.id;
   }, []);
 
+  // Wishlist
+  const addToWishlist = useCallback((product: Product) => {
+    setWishlist((prev) => {
+      if (prev.some((p) => p.id === product.id)) return prev;
+      return [...prev, product];
+    });
+  }, []);
+
+  const removeFromWishlist = useCallback((productId: number) => {
+    setWishlist((prev) => prev.filter((p) => p.id !== productId));
+  }, []);
+
+  const isInWishlist = useCallback(
+    (productId: number) => wishlist.some((p) => p.id === productId),
+    [wishlist]
+  );
+
+  // Reviews
+  const addReview = useCallback((review: Omit<Review, "id" | "date">) => {
+    const newReview: Review = {
+      ...review,
+      id: `REV-${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
+      date: new Date().toISOString(),
+    };
+    setReviews((prev) => [newReview, ...prev]);
+  }, []);
+
+  const getProductReviews = useCallback(
+    (productId: number) => reviews.filter((r) => r.productId === productId),
+    [reviews]
+  );
+
   const value = useMemo(
     () => ({
       items,
@@ -135,8 +196,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
       cartCount,
       orders,
       placeOrder,
+      wishlist,
+      addToWishlist,
+      removeFromWishlist,
+      isInWishlist,
+      reviews,
+      addReview,
+      getProductReviews,
     }),
-    [items, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartCount, orders, placeOrder]
+    [items, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartCount, orders, placeOrder, wishlist, addToWishlist, removeFromWishlist, isInWishlist, reviews, addReview, getProductReviews]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

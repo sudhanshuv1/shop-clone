@@ -89,27 +89,37 @@ function OrdersContent() {
             className="border border-gray-200 rounded-lg overflow-hidden"
           >
             {/* Order header */}
-            <div className="bg-gray-50 px-5 py-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-              <div>
-                <span className="text-gray-500">Order </span>
-                <span className="font-mono font-medium text-gray-900">
-                  {order.id}
-                </span>
+            <Link
+              href={`/orders/${order.id}`}
+              className="block bg-gray-50 px-5 py-4 hover:bg-gray-100 transition-colors"
+            >
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+                <div>
+                  <span className="text-gray-500">Order </span>
+                  <span className="font-mono font-medium text-gray-900">
+                    {order.id}
+                  </span>
+                </div>
+                <div className="text-gray-500">{formatDate(order.date)}</div>
+                <div>
+                  <span
+                    className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold capitalize ${
+                      STATUS_STYLES[order.status] ?? STATUS_STYLES.pending
+                    }`}
+                  >
+                    {order.status}
+                  </span>
+                </div>
+                <div className="sm:ml-auto flex items-center gap-2">
+                  <span className="font-semibold text-gray-900">
+                    Total: ${order.total.toFixed(2)}
+                  </span>
+                  <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </div>
-              <div className="text-gray-500">{formatDate(order.date)}</div>
-              <div>
-                <span
-                  className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold capitalize ${
-                    STATUS_STYLES[order.status] ?? STATUS_STYLES.pending
-                  }`}
-                >
-                  {order.status}
-                </span>
-              </div>
-              <div className="sm:ml-auto font-semibold text-gray-900">
-                Total: ${order.total.toFixed(2)}
-              </div>
-            </div>
+            </Link>
 
             {/* Order items */}
             <ul className="divide-y divide-gray-100">

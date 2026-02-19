@@ -14,22 +14,22 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/?category=Electronics" className="hover:text-white transition-colors">
                   Electronics
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/?category=Clothing" className="hover:text-white transition-colors">
                   Clothing
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/?category=Home" className="hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/?category=Books" className="hover:text-white transition-colors">
                   Books
                 </Link>
               </li>
@@ -49,7 +49,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/wishlist" className="hover:text-white transition-colors">
+                  Your Wishlist
+                </Link>
+              </li>
+              <li>
+                <Link href="/account" className="hover:text-white transition-colors">
                   Account Settings
                 </Link>
               </li>
@@ -59,17 +64,17 @@ export default function Footer() {
             <h3 className="text-white text-sm font-semibold mb-3">Help</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/help" className="hover:text-white transition-colors">
                   Customer Service
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/help?tab=returns" className="hover:text-white transition-colors">
                   Returns &amp; Refunds
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/help?tab=shipping" className="hover:text-white transition-colors">
                   Shipping Info
                 </Link>
               </li>

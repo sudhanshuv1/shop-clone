@@ -9,10 +9,11 @@ import { useApp } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const { addToCart } = useApp();
+  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useApp();
   const { isAuthenticated } = useAuth();
   const router = useRouter();
   const [added, setAdded] = useState(false);
+  const wishlisted = isInWishlist(product.id);
 
   const handleAdd = useCallback(() => {
     if (!isAuthenticated) {
@@ -23,6 +24,18 @@ export default function ProductCard({ product }: { product: Product }) {
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   }, [addToCart, product, isAuthenticated, router]);
+
+  const handleWishlist = useCallback(() => {
+    if (!isAuthenticated) {
+      router.push("/signin");
+      return;
+    }
+    if (wishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  }, [wishlisted, addToWishlist, removeFromWishlist, product, isAuthenticated, router]);
 
   return (
     <div className="group bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
@@ -35,6 +48,28 @@ export default function ProductCard({ product }: { product: Product }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleWishlist();
+            }}
+            className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-md hover:scale-110 transition-transform z-10"
+            aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <svg
+              className={`h-5 w-5 ${wishlisted ? "text-red-500 fill-red-500" : "text-gray-400"}`}
+              fill={wishlisted ? "currentColor" : "none"}
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
         </div>
         <div className="p-4 flex flex-col flex-1">
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">

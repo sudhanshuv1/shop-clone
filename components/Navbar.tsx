@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/context/AppContext";
@@ -9,10 +10,18 @@ export default function Navbar() {
   const { cartCount } = useApp();
   const { user, isAuthenticated, signOut } = useAuth();
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
 
   function handleSignOut() {
     signOut();
     router.push("/");
+  }
+
+  function handleSearch(e: FormEvent) {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (!q) return;
+    router.push(`/search?q=${encodeURIComponent(q)}`);
   }
 
   return (
@@ -25,14 +34,16 @@ export default function Navbar() {
           </Link>
 
           {/* Search Bar */}
-          <div className="flex-1 max-w-lg mx-8 hidden sm:block">
+          <form onSubmit={handleSearch} className="flex-1 max-w-lg mx-8 hidden sm:block">
             <div className="relative">
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
                 className="w-full bg-gray-800 text-white placeholder-gray-400 rounded-md py-2 pl-10 pr-4 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <button type="submit" className="absolute inset-y-0 left-0 pl-3 flex items-center">
                 <svg
                   className="h-5 w-5 text-gray-400"
                   fill="none"
@@ -46,9 +57,9 @@ export default function Navbar() {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
-              </div>
+              </button>
             </div>
-          </div>
+          </form>
 
           {/* Right side links */}
           <div className="flex items-center gap-4 sm:gap-6">
@@ -62,6 +73,12 @@ export default function Navbar() {
                   className="text-sm font-medium hover:text-gray-300 transition-colors"
                 >
                   Your Orders
+                </Link>
+                <Link
+                  href="/account"
+                  className="text-sm font-medium hover:text-gray-300 transition-colors hidden sm:inline"
+                >
+                  Account
                 </Link>
                 <button
                   onClick={handleSignOut}
@@ -86,6 +103,13 @@ export default function Navbar() {
                 </Link>
               </>
             )}
+
+            {/* Wishlist Icon */}
+            <Link href="/wishlist" className="relative hover:text-gray-300 transition-colors hidden sm:block" aria-label="Wishlist">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </Link>
 
             {/* Cart Icon */}
             <Link href="/cart" className="relative hover:text-gray-300 transition-colors">

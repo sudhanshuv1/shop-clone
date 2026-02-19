@@ -27,3 +27,13 @@ export interface Order {
   date: string;
   status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
 }
+
+export interface Review {
+  id: string;
+  productId: number;
+  userName: string;
+  rating: number;
+  title: string;
+  body: string;
+  date: string;
+}

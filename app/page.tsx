@@ -1,17 +1,29 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 import CategoryFilter from "@/components/CategoryFilter";
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category") ?? "All";
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(products.map((p) => p.category)));
     return ["All", ...unique];
   }, []);
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    categories.includes(categoryParam) ? categoryParam : "All"
+  );
+
+  // Sync with URL param changes
+  useEffect(() => {
+    const next = categories.includes(categoryParam) ? categoryParam : "All";
+    setSelectedCategory(next);
+  }, [categoryParam, categories]);
 
   const filtered = useMemo(() => {
     if (selectedCategory === "All") return products;
