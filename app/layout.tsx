@@ -45,12 +45,12 @@ export default function RootLayout({
             </div>
           </AppProvider>
         </AuthProvider>
-        <Script
-          src="http://localhost:3000/ourguide2-widget.iife.js"
-          data-product-id="prod_e6ea2dc7-192d-49f7-9068-ae8402996557"
-          data-api-url="http://localhost:3000"
-          strategy="afterInteractive"
-        />
+        <script 
+          src="https://api.usecrow.org/static/crow-widget.js"
+          data-api-url="https://api.usecrow.org"
+          data-product-id="user_39qov5OXT6hGNZMKnyJYMiZd17W"
+          data-agent-name="Assistant"
+        ></script>
       </body>
     </html>
   );
