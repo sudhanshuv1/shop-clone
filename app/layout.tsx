@@ -46,9 +46,9 @@ export default function RootLayout({
           </AppProvider>
         </AuthProvider>
         <Script
-          src="http://localhost:3000/ourguide-b2b-widget.iife.js"
+          src="https://almightily-unrisky-floy.ngrok-free.dev/ourguide-b2b-widget.iife.js"
           data-product-id="prod_b0c880f2-b195-4be1-a760-df47d4a8e47e"
-          data-api-url="http://localhost:3000"
+          data-api-url="https://almightily-unrisky-floy.ngrok-free.dev"
           strategy="afterInteractive"
         />
       </body>
