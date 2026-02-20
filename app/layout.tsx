@@ -45,12 +45,11 @@ export default function RootLayout({
             </div>
           </AppProvider>
         </AuthProvider>
-        <Script
-          src="https://almightily-unrisky-floy.ngrok-free.dev/ourguide-b2b-widget.iife.js"
+        <script
+          src="/ourguide-b2b-widget.iife.js"
           data-product-id="prod_b0c880f2-b195-4be1-a760-df47d4a8e47e"
           data-api-url="https://almightily-unrisky-floy.ngrok-free.dev"
-          strategy="afterInteractive"
-        />
+        ></script>
       </body>
     </html>
   );
