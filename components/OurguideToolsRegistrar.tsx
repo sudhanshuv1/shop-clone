@@ -6,7 +6,7 @@ import { apiPost } from "@/lib/api";
 
 declare global {
   interface Window {
-    ourguide: (action: string, payload?: unknown) => void;
+    ourguide?: (action: string, payload?: unknown) => void;
   }
 }
 
