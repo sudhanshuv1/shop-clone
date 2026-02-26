@@ -45,12 +45,12 @@ export default function RootLayout({
             </div>
           </AppProvider>
         </AuthProvider>
-        <Script
+        <Script 
           src="/ourguide-b2b-widget.iife.js"
-          data-product-id="prod_c2d6a9b0-2682-420f-8458-9a84b62ee148"
-          data-api-url="http://localhost:3000"
-          strategy="afterInteractive"
-        />
+          data-api-url="https://almightily-unrisky-floy.ngrok-free.dev"
+          data-product-id="prod_9518e7dd-ef3b-4cb9-a965-1f8d16ea0e14"
+          data-agent-name="Assistant"
+        ></Script>
       </body>
     </html>
   );
