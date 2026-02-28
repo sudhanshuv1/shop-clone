@@ -28,7 +28,7 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-8">
         <div className="animate-pulse">
           <div className="h-4 bg-gray-200 rounded w-48 mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -47,7 +47,7 @@ export default function ProductPage() {
 
   if (notFound || !product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-24 text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h1>
         <p className="text-gray-500">The product you&apos;re looking for doesn&apos;t exist.</p>
       </div>

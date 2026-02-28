@@ -72,7 +72,7 @@ function OrderDetailContent() {
 
   if (!order) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-24 text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Order Not Found</h1>
         <p className="text-gray-500 mb-6">
           We couldn&apos;t find an order with ID {orderId}.
@@ -122,7 +122,7 @@ function OrderDetailContent() {
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-8">
       {/* Back link */}
       <Link
         href="/orders"

@@ -9,7 +9,7 @@ function SuccessContent() {
   const orderId = searchParams.get("orderId");
 
   return (
-    <div className="max-w-lg mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-24 text-center">
       <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
         <svg
           className="w-8 h-8 text-green-500"
@@ -66,7 +66,7 @@ export default function CheckoutSuccessPage() {
   return (
     <Suspense
       fallback={
-        <div className="max-w-lg mx-auto px-4 py-24 text-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-24 text-center">
           <p className="text-gray-500">Loading...</p>
         </div>
       }

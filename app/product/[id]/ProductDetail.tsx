@@ -140,7 +140,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-8">
       {/* Breadcrumb */}
       <nav className="text-sm mb-6">
         <ol className="flex items-center gap-2 text-gray-500">

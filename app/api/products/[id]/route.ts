@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db/mongoose";
 import Product from "@/lib/db/models/Product";
+import Review from "@/lib/db/models/Review";
 
 export async function GET(
   _request: NextRequest,
@@ -19,6 +20,20 @@ export async function GET(
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
+    const ratingAgg = await Review.aggregate([
+      { $match: { productId } },
+      {
+        $group: {
+          _id: "$productId",
+          avgRating: { $avg: "$rating" },
+          reviewCount: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const avgRating = typeof ratingAgg?.[0]?.avgRating === "number" ? ratingAgg[0].avgRating : 0;
+    const reviewCount = typeof ratingAgg?.[0]?.reviewCount === "number" ? ratingAgg[0].reviewCount : 0;
+
     return NextResponse.json({
       product: {
         id: product.productId,
@@ -27,6 +42,8 @@ export async function GET(
         price: product.price,
         image: product.image,
         category: product.category,
+        avgRating,
+        reviewCount,
       },
     });
   } catch (error) {

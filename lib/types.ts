@@ -22,6 +22,8 @@ export interface Product {
   price: number;
   image: string;
   category: string;
+  avgRating?: number;
+  reviewCount?: number;
 }
 
 export interface CartItem {

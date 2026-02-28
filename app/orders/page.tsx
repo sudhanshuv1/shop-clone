@@ -92,7 +92,7 @@ function OrdersContent() {
 
   if (orders.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-24 text-center">
         <svg
           className="mx-auto h-16 w-16 text-gray-300 mb-6"
           fill="none"
@@ -123,7 +123,7 @@ function OrdersContent() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12 py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-6">Your Orders</h1>
 
       <div className="space-y-6">
