@@ -57,10 +57,10 @@ export default function RootLayout({
           </AppProvider>
         </AuthProvider>
         <Script
-          src="https://dashboard.argide.ai/argide-b2b-widget.iife.js"
-          data-api-url="https://api.argide.ai"
+          src="https://dev.dashboard.argide.ai/argide-b2b.iife.js"
+          data-api-url="https://dev.api.argide.ai"
           //uneet
-          data-product-id="prod_4118ca63-221f-4be2-a434-dc319c68c8f4"
+          data-product-id="prod_1d67d782-09bd-4f5f-809c-b35d1eeec5e3"
           //eshaangulati3221: prod_4118ca63-221f-4be2-a434-dc319c68c8f4
           data-agent-name="Assistant"
         ></Script>
