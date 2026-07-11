@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
 
         {/* Links grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
           <div>
             <h3 className="font-heading text-[0.6875rem] font-semibold text-white uppercase tracking-widest mb-4">
               Shop
@@ -120,6 +120,38 @@ export default function Footer() {
               <li>
                 <Link href="/help?tab=shipping" className="relative inline-block hover:text-white transition-colors duration-200">
                   Shipping Info
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-heading text-[0.6875rem] font-semibold text-white uppercase tracking-widest mb-4">
+              Company
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/about" target="_blank" rel="noopener noreferrer" className="relative inline-block hover:text-white transition-colors duration-200">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" target="_blank" rel="noopener noreferrer" className="relative inline-block hover:text-white transition-colors duration-200">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers" target="_blank" rel="noopener noreferrer" className="relative inline-block hover:text-white transition-colors duration-200">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="relative inline-block hover:text-white transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" target="_blank" rel="noopener noreferrer" className="relative inline-block hover:text-white transition-colors duration-200">
+                  Terms of Service
                 </Link>
               </li>
             </ul>
