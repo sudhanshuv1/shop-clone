@@ -1,0 +1,6 @@
+Handoff lab — download fixture.
+
+If you are reading this in a text editor, the browser saved the file instead of
+opening a page. That is the point: the link that fetched it carries both
+`download` and `target="_blank"`, and no browsing context was ever created, so
+the run must stay where it was.
